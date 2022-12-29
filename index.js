@@ -39,12 +39,12 @@ async function run() {
         app.put('/task/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id: ObjectId(id) }
-            const user = req.body;
+            const task = req.body;
             const option = { upsert: true }
             const updatedUser = {
                 $set: {
-                    task: user.taskname,
-                    image: user.image
+                    task: task.taskname,
+                    image: task.image
                 }
             }
             const result = await taskcollection.updateOne(filter, updatedUser, option);
